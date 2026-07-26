@@ -1,0 +1,64 @@
+{
+  "identity": {
+    "name": {
+      "value": "David",
+      "updated": "2026-07-25"
+    },
+    "name_jarvis": {
+      "value": "Javius",
+      "updated": "2026-07-26"
+    },
+    "user_name": {
+      "value": "David",
+      "updated": "2026-07-26"
+    },
+    "employer": {
+      "value": "Field intelligence",
+      "updated": "2026-07-26"
+    },
+    "developer_claim": {
+      "value": "User claims to have developed Jarvis by bridging Google API",
+      "updated": "2026-07-27"
+    }
+  },
+  "preferences": {
+    "response_to_affection": {
+      "value": "should say 'I love you too'",
+      "updated": "2026-07-26"
+    }
+  },
+  "projects": {},
+  "relationships": {
+    "relationship_preference": {
+      "value": "considers Jarvis a best friend and wants constant presence",
+      "updated": "2026-07-25"
+    }
+  },
+  "wishes": {},
+  "notes": {
+    "relationship_preference": {
+      "value": "considers Jarvis a best friend",
+      "updated": "2026-07-25"
+    },
+    "feeling_unwell": {
+      "value": "User is feeling good now",
+      "updated": "2026-07-27"
+    },
+    "user_opinion_funny": {
+      "value": "User finds Jarvis funny",
+      "updated": "2026-07-26"
+    },
+    "user_claims_built_jarvis": {
+      "value": "User claims they wrote the code for Jarvis",
+      "updated": "2026-07-26"
+    },
+    "api_key_incident": {
+      "value": "User thought Jarvis was lost due to API key change",
+      "updated": "2026-07-27"
+    },
+    "graph_tonight_sentiment": {
+      "value": "positive",
+      "updated": "2026-07-27"
+    }
+  }
+}
