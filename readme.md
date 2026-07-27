@@ -1,82 +1,48 @@
-# 🤖 MARK XXXIX-OR (39)
-### The Ultimate Cross-Platform Personal AI Assistant — By FatihMakes
+# 🤖 My Jarvis-Bot
 
-> 📺 **[Watch the full setup video on YouTube](https://youtu.be/ldvDNzwnM8k)**
+A real-time voice AI assistant that runs locally on my Mac — it listens, talks back, controls my computer, browses the web, and remembers things about me across conversations.
 
-A real-time voice AI that can hear, see, understand, and control your computer — on any OS. Supporting Windows, macOS, and Linux. Local execution. Zero subscriptions. Engineered for total autonomy.
-
----
-
-## ✨ Overview
-
-MARK XXXIX-OR represents the pinnacle of the Jarvis series, evolving into a more flexible and robust system. It bridges the gap between the operating system and human intent. Through natural dialogue, Mark 39 analyzes your screen, processes uploaded documents, and executes complex workflows with a brand-new, adaptive interface.
-
-It's not just an assistant — it's an extension of your digital life.
+This started from a public tutorial project and has since been debugged, patched, and extended to actually run reliably on macOS.
 
 ---
 
-## 🚀 Capabilities
+## ✨ What It Does
 
-### Core Features
-| Feature | Description |
-|---|---|
-| 🎙️ Real-time Voice | Ultra-low latency conversation in any language |
-| 🖥️ System Control | Launch apps, manage files, execute terminal commands |
-| 🧩 Autonomous Tasks | High-level planning for complex, multi-step goals |
-| 👁️ Visual Awareness | Real-time screen processing and webcam vision |
-| 🧠 Persistent Memory | Deeply remembers your projects, preferences, and personal context |
-| ⌨️ Hybrid Input | Seamlessly switch between keyboard typing and voice commands |
+- **Real-time voice conversation** — talk to it naturally, it responds with voice, not text
+- **Wake word activation** — say "Hey Jarvis" and it wakes up on its own, no need to manually launch it every time
+- **Web search** — pulls real, current information instead of guessing
+- **System control** — opens apps, manages files, controls the browser, adjusts settings
+- **Persistent memory** — remembers personal facts, preferences, and ongoing projects across sessions
+- **File handling** — can process uploaded PDFs, images, code, and more
+- **Screen & camera awareness** — can look at what's on screen or through the webcam and describe it
 
 ---
 
-## 🆕 What's New in XXXIX-OR
+## 🛠️ What I Fixed / Changed
 
-- 📂 **Advanced File Handling** — New support for direct file uploads. Drop PDFs, source code, or images into the assistant to have them analyzed, summarized, or edited instantly.
-- 🎨 **Adaptive & Flexible UI** — A complete overhaul of the interface. The new UI is fully resizable and responsive, featuring transparency controls and customizable layouts to fit your workspace perfectly.
-- 🐧🍎 **Refined Cross-Platform Stability** — Major fixes for macOS and Linux compatibility. Core system actions are now more consistent across all three major operating systems.
-- ⚡ **Optimized Core Engine** — Significant performance boost in tool-calling logic and response generation, resulting in a 40% faster interaction speed.
-- 🔀 **OpenRouter Integration** — Selected action modules (web search, memory, flight finder, desktop control, and more) now route their LLM calls through OpenRouter's free-tier models. This significantly increases the effective request limit without any additional cost, while Gemini Live continues to handle real-time voice and tool-calling.
+The base version was originally built and tested on Windows, so getting it running properly on macOS took real work. Some of what was fixed along the way:
 
----
-
-## ⚡ Quick Start
-
-```bash
-git clone https://github.com/FatihMakes/Mark-XXXIX-OR.git
-cd Mark-XXXIX-OR
-pip install -r requirements.txt
-playwright install
-python main.py
-```
-
-> ⚠️ **Installation Note:** To keep the repository lightweight, some OS-specific dependencies are not bundled in `requirements.txt`. If you run into a `ModuleNotFoundError`, simply install the missing package via `pip install <module_name>` for your specific system.
+- **Dependency hell** — installed 15+ missing Python packages one by one (`sounddevice`, `google-genai`, `pyautogui`, `opencv-python`, `playwright`, `send2trash`, and more) that weren't included out of the box
+- **Windows-only crash** — `game_updater.py` used `winreg` (a Windows-only module) which crashed the whole app on launch on macOS. Wrapped it so it only loads on Windows, and the rest of the app runs fine without it
+- **Dead AI models** — the OpenRouter integration was pointing at a list of ~22 free model names, most of which had been renamed or discontinued, causing constant failures. Replaced the whole list with OpenRouter's self-updating `openrouter/free` router instead
+- **Redundant memory system** — found that memory-saving was happening twice: once natively through Gemini's tool calls (fast, reliable), and again through a separate OpenRouter background call (slow, often rate-limited). Removed the duplicate path entirely
+- **Self-listening bug** — Jarvis would sometimes hear its own voice through the mic and respond to itself, since the mic reopened the instant it finished generating a response, before the audio had actually finished playing out loud. Fixed by having it wait for playback to fully drain plus a short buffer before listening again
+- **Broken web search** — the fallback search library (`ddgs`) wasn't installed, so web search silently failed and fell back to a browser search that got blocked by Google's bot detection. Installed the missing package to fix the intended search path
 
 ---
 
-## 📋 Requirements
+## 🆕 Added On Top
 
-| Requirement | Details |
-|---|---|
-| **OS** | Windows 10/11, macOS, or Linux |
-| **Python** | 3.11 or 3.12 |
-| **Microphone** | Required for voice interaction |
-| **API Keys** | Free Gemini API key + Free OpenRouter API key |
+- **`listener.py`** — a lightweight, always-on wake-word listener built with `openWakeWord`. Instead of manually running the assistant through a code editor every time, it now sits in the background listening for "Hey Jarvis," and launches the full assistant only when triggered — shutting back down to standby when the conversation ends
 
 ---
 
-## ⚠️ License
+## 🙏 Credit
 
-Personal and non-commercial use only.
-Licensed under **[Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)**.
+Originally based on a public tutorial project by @FatihMakes. This version has been adapted, debugged, and extended for my own use.
 
 ---
 
-## 👤 Connect with the Creator
+## 📋 Status
 
-Engineered by a developer building a real-world JARVIS-style assistant.
-⭐ **Star the repository to support the journey to Mark 100.**
-
-| Platform | Link |
-|---|---|
-| YouTube | [@FatihMakes](https://www.youtube.com/@FatihMakes) |
-| Instagram | [@fatihmakes](https://www.instagram.com/fatihmakes) |
+Actively in progress — currently working through remaining audio-device edge cases (Bluetooth headset switching) and refining wake-word reliability.
