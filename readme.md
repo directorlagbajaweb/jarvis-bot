@@ -1,4 +1,4 @@
-# 🤖 My Jarvis-Bot
+#  My Jarvis-Bot
 
 A real-time voice AI assistant that runs locally on my Mac — it listens, talks back, controls my computer, browses the web, and remembers things about me across conversations.
 
@@ -6,7 +6,7 @@ This started from a public tutorial project and has since been debugged, patched
 
 ---
 
-## ✨ What It Does
+##  What It Does
 
 - **Real-time voice conversation** — talk to it naturally, it responds with voice, not text
 - **Wake word activation** — say "Hey Jarvis" and it wakes up on its own, no need to manually launch it every time
@@ -18,7 +18,7 @@ This started from a public tutorial project and has since been debugged, patched
 
 ---
 
-## 🛠️ What I Fixed / Changed
+##  What I Fixed / Changed
 
 The base version was originally built and tested on Windows, so getting it running properly on macOS took real work. Some of what was fixed along the way:
 
@@ -31,18 +31,18 @@ The base version was originally built and tested on Windows, so getting it runni
 
 ---
 
-## 🆕 Added On Top
+##  Added On Top
 
 - **`listener.py`** — a lightweight, always-on wake-word listener built with `openWakeWord`. Instead of manually running the assistant through a code editor every time, it now sits in the background listening for "Hey Jarvis," and launches the full assistant only when triggered — shutting back down to standby when the conversation ends
 
 ---
 
-## 🙏 Credit
+##  Credit
 
 Originally based on a public tutorial project by @FatihMakes. This version has been adapted, debugged, and extended for my own use.
 
 ---
 
-## 📋 Status
+##  Status
 
 Actively in progress — currently working through remaining audio-device edge cases (Bluetooth headset switching) and refining wake-word reliability.
