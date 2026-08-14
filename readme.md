@@ -39,7 +39,7 @@ The base version was originally built and tested on Windows, so getting it runni
 
 ##  Credit
 
-Originally based on a public tutorial project by @FatihMakes. This version has been adapted, debugged, and extended for my own use.
+Originally based on a public tutorial project by https://github.com/FatihMakes. This version has been adapted, debugged, and extended for my own use.
 
 ---
 
